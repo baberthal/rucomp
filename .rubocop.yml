@@ -1,0 +1,7 @@
+require: rubocop-rspec
+
+Documentation:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
