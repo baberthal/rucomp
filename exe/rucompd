@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+
+begin
+  require 'rucomp/rucompd'
+rescue LoadError => e
+  puts "Error loading rucompd. Looking elsewhere...(#{e})"
+  $:.unshift(File.expand_path('../../lib', __FILE__))
+  require 'rucomp/rucompd'
+end
+
+Rucomp::RucompD.start if $0 == __FILE__
