@@ -1,5 +1,5 @@
 require 'rucomp/version'
+require 'rucomp/rucompd'
 
 module Rucomp
-  # Your code goes here...
 end
