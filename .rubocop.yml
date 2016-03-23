@@ -11,4 +11,4 @@ Style/FrozenStringLiteralComment:
   EnforcedStyle: always
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
