@@ -1,6 +1,6 @@
 require 'rucomp/server/request'
 require 'rucomp/server/request_objects'
-require 'rucomp/logger'
+require 'rucomp/server/logger'
 
 require 'thin'
 require 'fileutils'
@@ -34,13 +34,13 @@ module Rucomp
 
     def init_logging
       _create_log_dir
-      Rucomp::Logger.options = {
+      Logger.options = {
         device: log_file,
         template: ':time - :severity - :message',
         time_format: '%H:%S:%M',
         level: :info
       }
-      Rucomp::Logger.reset_logger
+      Logger.reset_logger
     end
 
     def _create_log_dir

@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'rucomp/logger'
+require 'rucomp/server/logger'
 require 'lumberjack'
 
-module Rucomp
+class Rucomp::Server
   RSpec.describe Logger do
     let(:dummy_lumberjack) { instance_double('Lumberjack::Logger') }
     before do
