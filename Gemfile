@@ -11,5 +11,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'ruby_gntp', require: false
   gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec', require: false, github: 'baberthal/rubocop-rspec',
+                       branch: 'not_to_not_cleanup'
 end
