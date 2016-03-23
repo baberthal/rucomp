@@ -1,3 +1,5 @@
+# encoding: utf-8
+# frozen_string_literal: true
 require 'rucomp/server/request'
 require 'rucomp/server/request_objects'
 require 'rucomp/server/logger'

@@ -3,3 +3,12 @@ Documentation:
 
 Style/SpecialGlobalVars:
   EnforcedStyle: use_perl_names
+
+Style/Encoding:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Metrics/MethodLength:
+  Max: 15
