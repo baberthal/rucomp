@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 require 'digest/md5'
 require 'rucomp/error'
+require 'rucomp/analysis/token'
 
 module Rucomp
   module Analysis
