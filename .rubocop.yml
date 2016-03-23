@@ -6,9 +6,19 @@ Style/SpecialGlobalVars:
 
 Style/Encoding:
   Enabled: true
+  Exclude:
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'bin/console'
+    - 'exe/rucompd'
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always
+  Exclude:
+    - 'Gemfile'
+    - 'Guardfile'
+    - 'bin/console'
+    - 'exe/rucompd'
 
 Metrics/MethodLength:
   Max: 20
@@ -18,3 +28,12 @@ Metrics/ClassLength:
 
 Metrics/ModuleLength:
   Max: 200
+
+Metrics/AbcSize:
+  Max: 26
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 8
