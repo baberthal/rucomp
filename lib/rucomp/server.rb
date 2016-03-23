@@ -1,19 +1,22 @@
 require 'rucomp/server/request'
 require 'rucomp/server/request_objects'
-require 'rack'
+require 'rucomp/logger'
+
+require 'thin'
 require 'fileutils'
+require 'dalli'
 
 module Rucomp
   class Server
-    attr_reader :port, :addr, :ruby_src_path, :log_to_stdout, :log_file
+    attr_reader :port, :addr, :log_to_stdout, :log_file
     def initialize(options = {})
-      @port = options[:port]
-      @addr = options[:addr]
-      @ruby_src_path = options[:ruby_src_path]
-      @log_to_stdout = options[:logging]
-      @log_file = @log_to_stdout ? $stdout : options[:log_file]
+      @port = options[:port] || 35_687
+      @addr = options[:addr] || '127.0.0.1'
+      @log_to_stdout = options[:log_to_stdout]
+      @log_file = @log_to_stdout ? $stdout : options[:log_file] || '~/.rucomp/server.log' # rubocop:disable Metrics/LineLength
       @secret_file = options[:secret_file]
       init_logging
+      @dalli_client = Dalli::Client.new('localhost:11211', compress: true)
     end
 
     def call(_env)
@@ -30,9 +33,20 @@ module Rucomp
     private
 
     def init_logging
+      _create_log_dir
+      Rucomp::Logger.options = {
+        device: log_file,
+        template: ':time - :severity - :message',
+        time_format: '%H:%S:%M',
+        level: :info
+      }
+      Rucomp::Logger.reset_logger
+    end
+
+    def _create_log_dir
+      return if @log_to_stdout
       logdir = File.dirname(log_file)
-      return if File.directory?(logdir)
-      FileUtils.mkdir_p(logdir)
+      FileUtils.mkdir_p(logdir) unless File.directory?(logdir)
     end
   end
 end
